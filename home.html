@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Box</title>
+    <style>
+        .main {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .inside {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+        }
+
+        button {
+            padding: 1em;
+            border-radius: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+        }
+
+        .cell {
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="inside">
+            <input type="number" id="numberInput" min="1" max="9" placeholder="Enter a number (1-9)">
+            <button onclick="changeColor()">Color me</button>
+        </div>
+
+
+
+        <div class="container">
+            <div class="cell" id="cell1">1</div>
+            <div class="cell" id="cell2">2</div>
+            <div class="cell" id="cell3">3</div>
+            <div class="cell" id="cell4">4</div>
+            <div class="cell" id="cell5">5</div>
+            <div class="cell" id="cell6">6</div>
+            <div class="cell" id="cell7">7</div>
+            <div class="cell" id="cell8">8</div>
+            <div class="cell" id="cell9">9</div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function changeColor() {
+            const number = parseInt(document.getElementById("numberInput").value);
+            if (number >= 1 && number <= 9) {
+                const cellId = "cell" + number;
+                const cell = document.getElementById(cellId);
+                cell.classList.add("green");
+                // Remove green class from other cells
+                const cells = document.querySelectorAll(".cell");
+                cells.forEach(function (cell) {
+                    if (cell.id !== cellId) {
+                        cell.classList.remove("green");
+                    }
+                });
+            } else {
+                alert("Please enter a number between 1 and 9.");
+            }
+        }
+    </script>
+</body>
+
+</html>
